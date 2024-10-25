@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'img/logoQ.jpeg' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>Quize App {% block title %} {% endblock title %}</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            animation: fadeIn 1s ease-in-out;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            background-color: #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; 
+            transition: top 0.3s ease-in-out;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff !important;
+            /* Brand text color */
+        }
+
+        /* Navbar link styling */
+        .navbar-nav .nav-link {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            color: #ffffff !important;
+            /* Link text color */
+            transition: all 0.3s ease;
+            /* Smooth hover transition */
+        }
+
+        /* Hover effect for navbar links */
+        .navbar-nav .nav-link:hover {
+            color: #f1f1f1 !important;
+            /* Change link color on hover */
+            text-decoration: underline;
+            /* Add underline on hover */
+        }
+
+       
+        .navbar-toggler {
+            border: none;
+           
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav .nav-link {
+                font-size: 1.1rem;
+                text-align: center;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ffffff;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            animation: fadeInContent 1s ease;
+        }
+
+        @keyframes fadeInContent {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #6a11cb !important;
+            color: white !important;
+        }
+
+        .footer {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-section {
+            margin-bottom: 20px;
+        }
+
+        .footer-section p {
+            color: #d834fc;
+        }
+
+        .footer h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ef39c5;
+        }
+
+        .footer a {
+            color: #d834fc;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #43fc2e;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            color: #d834fc;
+        }
+
+        .social-icons a:hover {
+            color: #43fc2e;
+        }
+
+        @media (max-width: 768px) {
+            .footer .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer .footer-section {
+                max-width: 100%;
+            }
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            color: #adb5bd;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">Quiz App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'quiz' %}">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+    <footer class="footer">
+        <div class="container">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h4>About Quiz App</h4>
+                <p>Test your knowledge and learn with our wide range of quizzes. Challenge your friends and enhance your
+                    skills!</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="link">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'quiz' %}">Home</a></li>
+                        <li><a href="{% url 'quiz' %}">Quizzes</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a><br>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a><br>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright Section -->
+        <div class="copyright">
+            <p>&copy; Quiz App. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons (can also use Bootstrap icons or others) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

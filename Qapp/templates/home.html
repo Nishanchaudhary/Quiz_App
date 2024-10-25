@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block title %}
+|home
+{% endblock title %}
+{% block content %}
+{% load static %}
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Body styling */
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Home page container */
+        .homepage-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem;
+            min-height: 80vh;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: slideUp 1s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Left section for text */
+        .left-section {
+            max-width: 50%;
+        }
+
+        .left-section h1 {
+            font-size: 3rem;
+            color: #6a11cb;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .left-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        /* Buttons */
+        .btn {
+            font-size: 1.2rem;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-start {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-start:hover {
+            background-color: #218838;
+        }
+
+        .btn-learn {
+            background-color: #007bff;
+            color: white;
+            margin-left: 1rem;
+        }
+
+        .btn-learn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Right section for image */
+        .right-section {
+            max-width: 40%;
+            animation: fadeInRight 1s ease-in-out;
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .right-section img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .homepage-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .left-section, .right-section {
+                max-width: 100%;
+            }
+
+            .right-section {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="homepage-container">
+            <!-- Left section for text and buttons -->
+            <div class="left-section">
+                <h1>Welcome to Quiz App!</h1>
+                <p>Test your knowledge across a wide range of topics with fun and engaging quizzes. Challenge yourself and learn something new every day!</p>
+                <div style="display: block; gap: 5px;">
+                    <a href="{% url 'quiz' %}" class="btn btn-start">Start Quiz</a>
+                 
+                </div>
+            </div>
+
+            <!-- Right section for image -->
+            <div class="right-section">
+                <img src="{% static 'img/quizimg.jpg' %}"  alt="Quiz Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body> 
+<br>
+{% endblock content %}

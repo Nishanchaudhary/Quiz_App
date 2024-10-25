@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+         body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .register-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease-in-out;
+        }
+
+        .register-card h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .register-card .form-control {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .register-card .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .register-card .btn-primary:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+
+        .register-card .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .register-card {
+                padding: 20px;
+                width: 90%;
+            }
+
+            .register-card h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-card">
+        <h2 class="text-center mt-5">Register</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </form>
+                <div class="login-link">
+                    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}
+|about
+{% endblock title %}
+{% block content %}
+{% load static %}
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+     
+
+        .about-us-section {
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        .about-us-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #007bff;
+        }
+
+        .about-us-section p {
+            text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+
+        .team-section {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 40px;
+            height: 100%;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fce6e6;
+            align-items: center;
+            
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            border:3px #007bff solid;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member h5 {
+            margin-top: 15px;
+            font-size: 1.25rem;
+            color: #007bff;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .about-us-section {
+                padding: 20px;
+            }
+
+            .team-section {
+                padding: 20px;
+            }
+
+            .team-member img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- About Us Section -->
+        <div class="about-us-section">
+            <h2>About Us</h2>
+            <p>Welcome to Quiz App! Our platform is designed to provide an engaging, fun, and educational experience for users of all ages. Whether you're a student looking to sharpen your knowledge, a professional trying to improve your skills, or just someone who loves trivia, Quiz App is the perfect place for you.</p>
+            <p>Our mission is to create a user-friendly and informative quiz platform that helps people challenge their minds while enjoying the process of learning. We believe in the power of curiosity and knowledge to transform lives, and we're here to make learning exciting and accessible for everyone.</p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-section">
+            <h2 class="text-center" style=" color: #007bff;" >Meet the Team</h2>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="{% static 'img/NC cv.jpg' %}" alt="Team Member 1">
+                        <h5>Nishan K. Chaudhary</h5>
+                        <p>Founder & Lead Developer</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="{% static 'img/img1.jpg' %}" alt="Team Member 2">
+                        <h5>Nishan K.C</h5>
+                        <p>UI/UX Designer</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="{% static 'img/contant_manager.jpg' %}" alt="Team Member 3">
+                        <h5>Nistha Chaudhary</h5>
+                        <p>Content Manager</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<br>
+{% endblock content %}

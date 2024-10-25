@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}
+|Quizzes Results
+{% endblock title %}
+{% block content %}
+
+   
+    <!-- Bootstrap for responsive layout -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .results-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .result-card {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #e9f1ff;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        .result-card:hover {
+            transform: scale(1.03);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .result-card strong {
+            color: #333;
+        }
+
+        .score-summary {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+
+        /* Animation for fade-in */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .results-container {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .result-card {
+                padding: 15px;
+            }
+
+            .score-summary {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="results-container">
+    <h2>Quiz Results</h2>
+    <ul class="list-unstyled">
+        {% for answer in user_answers %}
+        <li class="result-card">
+            <strong>Question:</strong> {{ answer.question.question_text }}<br>
+            <strong>Your Answer:</strong> {{ answer.selected_option.option_text }}<br>
+            <strong>Correct:</strong> {{ answer.selected_option.is_correct|yesno:"Yes,No" }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Score Summary -->
+    <div class="score-summary">
+        Your Score: {{ score }} out of {{ total_questions }}
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock content %}

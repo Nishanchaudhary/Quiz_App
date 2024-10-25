@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}
+|Quizzes
+{% endblock title %}
+{% block content %}
+
+    <!-- Include Bootstrap for responsiveness -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .question-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #e9f1ff;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        .question-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Fade-in animation for question cards */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Make the form fully responsive */
+        @media (max-width: 768px) {
+            .quiz-container {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .question-card {
+                padding: 15px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Take the Quiz</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="questions-wrapper">
+            {% for question in questions %}
+                <div class="question-card">
+                    <h4>{{ question.question_text }}</h4>
+                    {% for option in question.options.all %}
+                        <label class="d-block">
+                            <input type="radio" name="question_{{ question.id }}" value="{{ option.id }}">
+                            {{ option.option_text }}
+                        </label>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="submit-btn mt-4">Submit Answers</button>
+    </form>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock content %}
